@@ -771,6 +771,35 @@
               </div>
             </div>
           </section>
+          <section class="section-message">
+            <div class="message_form">
+              <div class="message_form__header">
+                <h3 class="title-24">Посчитаем ваш проект онлайн</h3>
+                <p>Заполните форму, прикрепите необходимые файлы. Мы посчитаем примерную стоимость и перезвоним вам для консультации.</p>
+              </div>
+              <form class="message_form__content" action="#">
+                <div class="field-set">
+                  <input class="field" type="text" name="name" placeholder="Имя">
+                </div>
+                <div class="field-set">
+                  <textarea class="field" name="comment" placeholder="Комментарий"></textarea>
+                </div>
+                <div class="field-set">
+                  <input class="field mask--phone" type="text" name="phone">
+                </div>
+                <label class="field-attach">
+                  <input type="file" name="file_add"><i class="icon-attachment"></i><span class="text">Прикрепить файлы</span>
+                </label>
+                <div class="field-set">
+                  <input class="field" type="email" name="email" placeholder="Электронная почта">
+                </div>
+                <label class="field-checked type-square">
+                  <input type="checkbox" name="check1"><span class="check"></span><span class="text">Я даю согласение на обработку моих персональных данных </span>
+                </label>
+                <button class="button-red-border" type="submit"><span>Отправить заявку</span></button>
+              </form>
+            </div>
+          </section>
         </div>
       </div>
     </div>
@@ -844,6 +873,7 @@
       <div class="flex items-center"><i class="icon-like"></i><span>12</span></div></a>
     <script src="./libs/lazysizes/lazysizes.min.js" defer></script>
     <script src="./libs/swiper/swiper-bundle.min.js" defer></script>
+    <script src="./libs/imask/imask.js" defer></script>
     <script src="./js/common.js" defer></script>
   </body>
 </html>

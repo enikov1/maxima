@@ -101,6 +101,7 @@ textarea {
   --default-font: 'Inter';
   --c-text: #212121;
   --c-text-60: rgba(33,33,33,.6);
+  --c-blue: #0047FF;
   --c-red: #FF0000;
   --c-gray: #8D8D8D;
   --c-gray-field: #757575;
@@ -468,7 +469,7 @@ body {
   position: absolute;
   top: 50%;
   right: 0.6875rem;
-  margin-top: -0.5625rem;
+  margin-top: -0.6875rem;
 }
 
 .header__center-search .form_search-button:hover {
@@ -1611,6 +1612,83 @@ body {
   display: block;
 }
 
+.section-message {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.message_form {
+  border-radius: 0.3125rem;
+  width: 30.1875rem;
+  background-color: white;
+  padding: 1.125rem 1.5rem;
+  border: 0.03125rem solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.message_form__header {
+  margin-bottom: 1.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.message_form__header .title-24 {
+  font-weight: bold;
+}
+
+.message_form__header p {
+  margin-top: 1.125rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 165%;
+  color: var(--c-black-50);
+}
+
+.message_form__content .field-attach {
+  margin-bottom: 1.125rem;
+}
+
+.message_form__content .field-checked {
+  margin-bottom: 1.5rem;
+}
+
+.message_form__content .field-checked .check {
+  position: relative;
+  width: 0.8125rem !important;
+  height: 0.8125rem !important;
+}
+
+.message_form__content .field-checked .check::before {
+  position: absolute;
+  top: -0.125rem;
+  left: 0;
+  font-size: 0.75rem !important;
+}
+
+.message_form__content .button-red-border {
+  width: 100%;
+  padding: 1.4375rem 0;
+}
+
+.message_form__content .button-red-border span {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
 .aside {
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 17.625rem;
@@ -2026,6 +2104,107 @@ body {
 .section-header p {
   font-size: 1rem;
   color: var(--c-black-30);
+}
+
+.field-set {
+  position: relative;
+  margin-bottom: 1.125rem;
+}
+
+.field-set:last-child {
+  margin-bottom: 0;
+}
+
+.field {
+  border-radius: 0.3125rem;
+  height: 3.125rem;
+  width: 100%;
+  padding: 0 1.25rem;
+  -webkit-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  transition: all 250ms ease;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 0.03125rem solid rgba(0, 0, 0, 0.2);
+}
+
+.field:focus {
+  border-color: black;
+}
+
+.field::-webkit-input-placeholder {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: black;
+}
+
+.field:-moz-placeholder {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: black;
+}
+
+.field::-moz-placeholder {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: black;
+}
+
+.field:-ms-input-placeholder {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: black;
+}
+
+textarea.field {
+  padding: 0.875rem 1.25rem;
+  min-height: 6.875rem;
+  max-height: 12.5rem;
+  resize: vertical;
+}
+
+.field-attach {
+  width: 100%;
+  cursor: pointer;
+  height: 3.125rem;
+  border-radius: 0.3125rem;
+  border: 0.03125rem dashed rgba(0, 0, 0, 0.5);
+  border-width: 0.0625rem;
+  padding: 1.125rem 1.25rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.field-attach:hover span {
+  text-decoration: none;
+}
+
+.field-attach input {
+  display: none;
+}
+
+.field-attach i {
+  font-size: 0.75rem;
+  margin-right: 0.625rem;
+}
+
+.field-attach span {
+  color: var(--c-blue);
+  font-size: 0.625rem;
+  font-weight: 500;
+  text-decoration: underline;
+  -webkit-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  transition: all 250ms ease;
 }
 
 .footer {

@@ -203,6 +203,11 @@ button_scroll_to_top.addEventListener('click', (event) => {
 	up();
 });
 
+let phoneMask = IMask(
+document.querySelector('.mask--phone'), {
+ 	 mask: '+{7} (000) 000-00-00'
+});
+
 
 // sliders
 
