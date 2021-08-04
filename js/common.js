@@ -59,7 +59,7 @@ let slideUp = (target, duration=500) => {
     }
 
     /* TOOGLE */
-    var slideToggle = (target, duration = 500) => {
+    let slideToggle = (target, duration = 500) => {
         if (window.getComputedStyle(target).display === 'none') {
           return slideDown(target, duration);
         } else {
@@ -73,24 +73,74 @@ const event_hide_not_target = (target, elem) => {
 	});
 }
 
+const event_sort_hide_not_target = (target, elem) => {
+	window.addEventListener('click', (event) => {
+		if(!target.contains(event.target) && !elem.contains(event.target)) target.parentNode.classList.remove('active');
+	});
+}
+
 const drop_menu_el = document.querySelectorAll('.drop-menu');
+const filter_drop_menu_el = document.querySelectorAll('.filter_dropmenu_target');
+const filter_drop_menu_sort_wrap = document.querySelector('.filter_wrap__sort');
 
 const drop_menu_hide = () => {
-	let menu = document.querySelectorAll('.drop-menu');
 	
-	menu.forEach(e => {
+	drop_menu_el.forEach(e => {
 		let menu_content = e.querySelector('.drop-menu-content');
 		event_hide_not_target(e, menu_content);
 	});
-	
-	
 }
 
-drop_menu_el.forEach(e => {
-	e.addEventListener('click', () => e.classList.toggle('active'));
-});
-drop_menu_hide();
+const filter_drop_menu_hide = () => {	
+	filter_drop_menu_el.forEach(e => {
+		let menu_content = e.querySelector('.filter_dropmenu');
 
+		event_hide_not_target(e, menu_content);
+	});
+}
+
+const filter_drop_sort_hide = () => {	
+	let elem = filter_drop_menu_sort_wrap.querySelector('.select_target');
+	let menu_content = filter_drop_menu_sort_wrap.querySelector('.filter_sort_drop');
+	event_sort_hide_not_target(elem, menu_content);
+}
+
+if(drop_menu_el) {
+	drop_menu_el.forEach(e => {
+		e.addEventListener('click', (event) => {
+			event.preventDefault();
+
+			e.classList.toggle('active');
+		});
+	});
+
+	drop_menu_hide();
+}
+
+if(filter_drop_menu_el) {
+	filter_drop_menu_el.forEach(e => {
+		e.addEventListener('click', (event) => {
+			event.preventDefault();
+
+			if(event.target.tagName == 'A') {
+				e.classList.toggle('active');
+			}
+
+		});
+	});
+
+	filter_drop_menu_hide();
+}
+
+if(filter_drop_menu_sort_wrap) {
+	filter_drop_menu_sort_wrap.querySelector('.select_target').addEventListener('click', (event) => {
+		event.preventDefault();
+
+		filter_drop_menu_sort_wrap.classList.toggle('active');
+	});
+
+	filter_drop_sort_hide();
+}
 
 // aside filters
 
@@ -139,15 +189,15 @@ if(aside_child_item != null) {
 
 // tabs
 
-  const tabs = document.querySelector('.tab_wrap');
-  const tabsBtn = document.querySelectorAll('.tab_btn');
-  const tabsContent = document.querySelectorAll('.tab_content');
+  const tabs = document.querySelector('.tab--wrap');
+  const tabsBtn = document.querySelectorAll('.tab--btn');
+  const tabsContent = document.querySelectorAll('.tab--content');
 
   if (tabs) {
     tabs.addEventListener('click', (e) => {
 		e.preventDefault();
 
-      if (e.target.classList.contains('tab_btn')) {
+      if (e.target.classList.contains('tab--btn')) {
         const tabsPath = e.target.dataset.tabsPath;
         tabsBtn.forEach(el => {el.classList.remove('active')});
         document.querySelector(`[data-tabs-path="${tabsPath}"]`).classList.add('active');
@@ -203,10 +253,254 @@ button_scroll_to_top.addEventListener('click', (event) => {
 	up();
 });
 
-let phoneMask = IMask(
-document.querySelector('.mask--phone'), {
- 	 mask: '+{7} (000) 000-00-00'
-});
+// mask inputs
+
+const phone = document.querySelector('.mask--phone');
+
+if(phone) {
+	let phoneMask = IMask(
+	phone, {
+		mask: '+{7} (000) 000-00-00',
+		placeholderChar: '.',
+		lazy: false,
+	});
+}
+
+
+
+// calc
+
+// let itemIndex = 1;
+
+const form_calc = document.querySelector('.form_calc');
+const form_calc1 = document.querySelector('#form_calc_1');
+const form_calc2 = document.querySelector('#form_calc_2');
+const form_calc_title = document.querySelector('#calc_stage_header');
+
+const form_calc_bar = !form_calc || form_calc.querySelector('.bar');
+const form_calc_bar_count = !form_calc || form_calc_bar.querySelectorAll('li');
+const form_calc_count_page = !form_calc || form_calc.querySelector('.bar_count');
+const form_calc_tab = !form_calc || form_calc.querySelectorAll('.form_calc__right-tab');
+
+const form_calc_stage = !form_calc || form_calc.querySelectorAll('[data-stage]');
+const form_calc_stage_reset = !form_calc || form_calc.querySelectorAll('[data-stage-reset]');
+
+const form_calc_header_1 = ['Выберите форму кухни', 'Введите размеры кухни', 'Материал фасада'];
+const form_calc_header_2 = ['Куда планируете поставить шкаф?', 'Форма шкафа', 'Сколько дверей нужно для шкафа?', 'Укажиет размеры шкафа', 'Материал фасада шкафа'];
+
+if(form_calc_stage != null && form_calc != null) {
+
+	form_calc.querySelectorAll('.tab-1 input').forEach(e => {
+		e.addEventListener('change', () => {
+			form_calc.querySelector('#button_1').classList.remove('disabled');
+
+			form_calc.querySelector('#checked_name1').innerHTML = e.getAttribute('data-name');
+		});
+	});
+
+	if(form_calc1) {
+		form_calc1.querySelectorAll('.tab-2 input').forEach(e => {
+			e.addEventListener('input', (event) => {
+				// console.log(e.value);
+				if(e.value > 0 || e.checked) form_calc.querySelector('#button_2').classList.remove('disabled');
+				else form_calc.querySelector('#button_2').classList.add('disabled');
+			});
+		});
+	}
+
+	if(form_calc2) {
+		form_calc2.querySelectorAll('.tab-2 input').forEach(e => {
+			e.addEventListener('change', () => {
+				form_calc.querySelector('#button_2').classList.remove('disabled');
+
+				form_calc.querySelector('#checked_name2').innerHTML = e.getAttribute('data-name');
+			});
+		});
+
+		form_calc2.querySelectorAll('.tab-3 input').forEach(e => {
+			e.addEventListener('change', () => {
+				form_calc.querySelector('#button_3').classList.remove('disabled');
+
+				form_calc.querySelector('#checked_name3').innerHTML = e.getAttribute('data-name');
+			});
+		});
+
+		form_calc2.querySelectorAll('.tab-4 input').forEach(e => {
+			e.addEventListener('input', (event) => {
+				// console.log(e.value);
+				if(e.value > 0 || e.checked) form_calc.querySelector('#button_4').classList.remove('disabled');
+				else form_calc.querySelector('#button_4').classList.add('disabled');
+			});
+		});
+	}
+
+	let arr = [];
+
+	if(form_calc1) {
+		form_calc.querySelectorAll('.tab-3 input').forEach(e => {
+			e.addEventListener('change', () => {
+				form_calc.querySelector('#button_3').classList.remove('disabled');
+
+				
+				
+				if(e.checked) {
+					arr.push(e.getAttribute('data-name'));
+					form_calc.querySelector('#checked_name1').innerHTML = arr.join(', ');
+				}
+
+				form_calc.querySelector('#checked_name2').innerHTML = e.getAttribute('data-name');
+			});
+		});
+	}
+
+	if(form_calc2) {
+		form_calc2.querySelectorAll('.tab-5 input').forEach(e => {
+			e.addEventListener('change', () => {
+				form_calc2.querySelector('#button_5').classList.remove('disabled');
+
+				
+				
+				if(e.checked) {
+					arr.push(e.getAttribute('data-name'));
+					form_calc2.querySelector('#checked_name4').innerHTML = arr.join(', ');
+				}
+
+			});
+		});
+	}	
+
+	
+
+	form_calc_stage.forEach(e => {
+		e.addEventListener('click', function(event) {
+			event.preventDefault();
+
+			if(this.getAttribute('data-stage') == '1') {
+				// form_calc_stage_status(0);
+				form_calc_bar.querySelector('.bar-1').classList.add('active');
+				form_calc.querySelector('.tab-1').classList.add('active');
+
+				form_calc_bar.querySelector('.bar-2').classList.remove('active');
+				form_calc.querySelector('.tab-2').classList.remove('active');
+				form_calc.querySelector('.tab-3').classList.remove('active');
+				form_calc.querySelector('.tab-end').classList.remove('active');
+
+				form_calc_count_page.querySelector('.first').innerHTML = 1;
+
+				if(form_calc1) {
+					form_calc_title.innerHTML = form_calc_header_1[0];
+				} else if(form_calc2) {
+					form_calc_title.innerHTML = form_calc_header_2[0];
+				}
+
+
+			}
+
+			if(this.getAttribute('data-stage') == '2') {
+				form_calc_bar.querySelector('.bar-2').classList.add('active');
+				form_calc_bar.querySelector('.bar-3').classList.remove('active');
+
+				form_calc.querySelector('.tab-1').classList.remove('active');
+				form_calc.querySelector('.tab-3').classList.remove('active');
+
+				form_calc.querySelector('.tab-2').classList.add('active');
+
+				form_calc_count_page.querySelector('.first').innerHTML = 2;
+
+				if(form_calc1) {
+					form_calc_title.innerHTML = form_calc_header_1[1];
+				} else if(form_calc2) {
+					form_calc_title.innerHTML = form_calc_header_2[1];
+				}
+			}
+
+			if(this.getAttribute('data-stage') == '3') {
+				form_calc_bar.querySelector('.bar-3').classList.add('active');
+
+				form_calc.querySelector('.tab-2').classList.remove('active');
+				form_calc.querySelector('.tab-3').classList.add('active');
+
+				if(form_calc1) {
+					form_calc.querySelector('.tab-end').classList.remove('active');
+				}
+
+				if(form_calc2) {
+					form_calc_bar.querySelector('.bar-4').classList.remove('active');
+					form_calc.querySelector('.tab-4').classList.remove('active');
+				}
+
+				form_calc_count_page.querySelector('.first').innerHTML = 3;
+
+				if(form_calc1) {
+					form_calc_title.innerHTML = form_calc_header_1[2];
+				} else if(form_calc2) {
+					form_calc_title.innerHTML = form_calc_header_2[2];
+				}
+			}
+
+			if(this.getAttribute('data-stage') == '4') {
+				form_calc_bar.querySelector('.bar-4').classList.add('active');
+				
+
+				form_calc.querySelector('.tab-3').classList.remove('active');
+				
+				form_calc.querySelector('.tab-4').classList.add('active');
+
+				if(form_calc2) {
+					form_calc_bar.querySelector('.bar-5').classList.remove('active');
+					form_calc.querySelector('.tab-5').classList.remove('active');
+				}
+
+				form_calc_count_page.querySelector('.first').innerHTML = 4;
+
+				if(form_calc1) {
+					form_calc_title.innerHTML = form_calc_header_1[2];
+				} else if(form_calc2) {
+					form_calc_title.innerHTML = form_calc_header_2[3];
+				}
+			}
+
+			if(this.getAttribute('data-stage') == '5') {
+				form_calc_bar.querySelector('.bar-5').classList.add('active');
+
+				form_calc.querySelector('.tab-4').classList.remove('active');
+				form_calc.querySelector('.tab-5').classList.add('active');
+
+				form_calc_count_page.querySelector('.first').innerHTML = 5;
+
+				if(form_calc2) {
+					form_calc_title.innerHTML = form_calc_header_2[4];
+				}
+			}
+
+			if(this.getAttribute('data-stage') == 'end') {
+				// form_calc_bar.querySelector('.bar-4').classList.add('active');
+
+				form_calc.classList.add('form_calc--finish');
+
+				if(form_calc1) {
+					form_calc.querySelector('.tab-3').classList.remove('active');
+					
+				}
+				
+
+				if(form_calc2) {
+					form_calc.querySelector('.tab-5').classList.remove('active');
+				}
+
+				form_calc.querySelector('.tab-end').classList.add('active');
+			}
+
+			if(this.getAttribute('data-stage-reset') == 'true') {
+				form_calc.classList.remove('form_calc--finish');
+			}
+		})
+	});
+}
+
+
+
+
 
 
 // sliders
@@ -248,4 +542,64 @@ const slider_review = new Swiper('#slider_review', {
 		nextEl: '.swiper-nav-next',
 		prevEl: '.swiper-nav-prev',
 	}
+});
+
+const slider_item_view = new Swiper('#slider_item_view', {
+	slidesPerView: 3,
+	slidesPerGroup: 3,
+  	spaceBetween: 24,
+	autoplay: {
+		delay: 6500,
+		disableOnInteraction: false,
+	},
+
+	pagination: {
+		el: '.swiper-pagination',
+		clickable: true
+	},
+
+	navigation: {
+		nextEl: '.swiper-nav-next',
+		prevEl: '.swiper-nav-prev',
+	}
+});
+
+const slider_item_related = new Swiper('#slider_item_related', {
+	slidesPerView: 3,
+	slidesPerGroup: 3,
+  	spaceBetween: 24,
+	watchSlidesProgress: true,
+    watchSlidesVisibility: true,
+	autoplay: {
+		delay: 6500,
+		disableOnInteraction: false,
+	},
+
+	pagination: {
+		el: '.swiper-pagination',
+		clickable: true
+	},
+
+	navigation: {
+		nextEl: '.swiper-nav-next',
+		prevEl: '.swiper-nav-prev',
+	}
+});
+
+const slider_page_product = new Swiper("#slider_page_product", {
+        spaceBetween: 14,
+        slidesPerView: 5,
+        freeMode: true,
+        watchSlidesVisibility: true,
+        watchSlidesProgress: true,
+      });
+const slider_page_product2 = new Swiper("#slider_page_product2", {
+	spaceBetween: 10,
+	navigation: {
+		nextEl: ".swiper-button-next",
+		prevEl: ".swiper-button-prev",
+	},
+	thumbs: {
+		swiper: slider_page_product,
+	},
 });

@@ -1,0 +1,14 @@
+<svg width="280" height="177" viewBox="0 0 280 177" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.5" y="0.5" width="69" height="176" rx="0.5" fill="#EEF8FF" stroke="#78BEFF"/>
+<path d="M55 83H61V92" stroke="black"/>
+<rect x="-0.5" y="0.5" width="69" height="176" rx="0.5" transform="matrix(-1 0 0 1 139 0)" fill="#EEF8FF" stroke="#78BEFF"/>
+<path d="M85 83H79V92" stroke="black"/>
+<g opacity="0.2">
+<rect x="140.5" y="0.5" width="69" height="176" rx="0.5" fill="#D4E0E8" stroke="#444444"/>
+<path d="M195 83H201V92" stroke="#444444"/>
+</g>
+<g opacity="0.2">
+<rect x="-0.5" y="0.5" width="69" height="176" rx="0.5" transform="matrix(-1 0 0 1 279 0)" fill="#D4E0E8" stroke="#444444"/>
+<path d="M225 83H219V92" stroke="#444444"/>
+</g>
+</svg>
