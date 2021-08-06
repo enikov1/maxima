@@ -603,3 +603,31 @@ const slider_page_product2 = new Swiper("#slider_page_product2", {
 		swiper: slider_page_product,
 	},
 });
+
+const reviews_items = document.querySelectorAll('.reviews_items__item');
+
+if(reviews_items) {
+	reviews_items.forEach(e => {
+
+		let thumb = e.querySelector('.right__slider-thumbs');
+		let main = e.querySelector('.right__slider-main');
+
+		let slider_page_review = new Swiper(thumb, {
+				spaceBetween: 14,
+				slidesPerView: 3,
+				freeMode: true,
+				watchSlidesVisibility: true,
+				watchSlidesProgress: true,
+			});
+		let slider_page_review2 = new Swiper(main, {
+			spaceBetween: 14,
+			// navigation: {
+			// 	nextEl: "#slider_page_review2 .swiper-button-next",
+			// 	prevEl: "#slider_page_review2 .swiper-button-prev",
+			// },
+			thumbs: {
+				swiper: slider_page_review,
+			},
+		});
+	});
+}
