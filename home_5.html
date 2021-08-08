@@ -11,7 +11,7 @@
     <header class="header">
       <div class="header__top">
         <div class="container">
-          <button class="header__top-change" type="button"><i class="icon-locale"></i><span class="text">Тверь</span></button>
+          <button class="header__top-change" type="button" data-modal-target="modal_change_locale"><i class="icon-locale"></i><span class="text">Тверь</span></button>
           <div class="header__top-text">
             <p>Недорогие кухни и мебель на заказ от производителя</p>
           </div>
@@ -27,12 +27,14 @@
       </div>
       <div class="header__center">
         <div class="container">
+          <button class="header__center-burger" type="button" data-modal-target="modal_smart_menu"><span class="line"></span><span class="line"></span><span class="line"></span></button>
           <div class="header__center-logo"><a href="/"><img src="./img/logo.svg" alt="logo"></a></div>
           <div class="header__center-search">
             <form class="form_search" action="#">
               <input class="form_search-field" type="text" placeholder="Поиск по товарам">
               <button class="form_search-button" type="submit"><i class="icon-loupe"></i></button>
             </form>
+            <button class="form_search_smart_target" type="button" data-modal-target="modal_search"><i class="icon-loupe"></i></button>
           </div>
           <div class="header__center-contact">
             <ul>
@@ -52,8 +54,8 @@
       <nav class="header__nav">
         <div class="container">
           <ul>
-            <li><a href="#">
-                <div class="burger"><span class="line"></span><span class="line"></span><span class="line"></span></div>Каталог</a></li>
+            <li><a href="#" data-modal-target="modal_catalog">
+                <div class="burger"><span class="line"></span><span class="line"></span><span class="line"></span></div>Каталог<i class="icon-arrow-bottom"></i></a></li>
             <li><a href="#">Наши работы</a></li>
             <li><a href="#">Бесплатный замер</a></li>
             <li class="drop-menu"><a href="#">Калькулятор<i class="icon-arrow-bottom"></i></a>
@@ -63,8 +65,14 @@
               </ul>
             </li>
             <li><a href="#">Акции</a></li>
-            <li><a href="#">Магазины</a></li>
-            <li><a href="#">Контакты</a></li>
+            <li class="smart-first"><a href="#">Магазины</a>
+              <button class="header__nav-button" type="button"><i class="icon-drop-list"></i></button>
+              <ul class="drop-menu-content" id="smart_drop_menu">
+                <li><a href="#">Расчёт кухонь</a></li>
+                <li><a href="#">Расчёт шкафов</a></li>
+              </ul>
+            </li>
+            <li class="smart-last"><a href="#">Контакты</a></li>
           </ul>
         </div>
       </nav>
@@ -347,12 +355,422 @@
       </div>
       <div class="footer__bottom">
         <div class="container">
-          <p>© 2015-2021 Фабрика мебели «Кухни Максима»</p><a href="#">Политика конфиденциальности</a><a class="logo" href="#"><span>Разработка сайта </span><img src="./img/logo-wigos.png" alt="logo"></a>
+          <div class="footer__bottom_left">
+            <p>© 2015-2021 Фабрика мебели «Кухни Максима»</p>
+          </div>
+          <div class="footer__bottom_center"><a href="#">Политика конфиденциальности</a></div>
+          <div class="footer__bottom_right"><a class="logo" href="#"><span>Разработка сайта </span><img src="./img/logo-wigos.png" alt="logo"></a></div>
         </div>
       </div>
     </footer>
+    <div class="smart_menu modal_content" id="modal_smart_menu">
+      <div class="modal_content__overlay"></div>
+      <div class="smart_menu__wrap">
+        <div class="smart_menu__header">
+          <button class="smart_menu__header-locale" type="button" data-modal-target="modal_change_locale"><i class="icon-locale"></i><span class="text">Тверь</span></button>
+          <button class="modal_close" type="button"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 1L14 14" stroke="black"/>
+<path d="M14 1L1 14" stroke="black"/>
+</svg>
+          </button>
+        </div>
+        <div class="smart_menu__nav">
+          <ul>
+            <li><a href="#">Наши работы</a></li>
+            <li><a href="#">Бесплатный замер</a></li>
+            <li><a href="#">Калькулятор<i class="icon-arrow-bottom"></i></a>
+              <ul class="smart-drop-menu-content">
+                <li><a href="#">Расчёт кухонь</a></li>
+                <li><a href="#">Расчёт шкафов</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Акции</a></li>
+            <li><a href="#">Магазины</a></li>
+            <li><a href="#">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="smart_menu__foot">
+          <ul>
+            <li><a href="#">О фабрике</a></li>
+            <li><a href="#">Доставка и оплата</a></li>
+            <li><a href="#">Рассрочка</a></li>
+            <li><a href="#">Гарантия</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="modal_content modal_static" id="modal_search">
+      <div class="modal_content__wrap">
+        <div class="modal_content__header"><b class="title">Поиск</b>
+          <button class="modal_close" type="button"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 1L14 14" stroke="black"/>
+<path d="M14 1L1 14" stroke="black"/>
+</svg>
+          </button>
+        </div>
+        <div class="modal_content__box" data-simplebar>
+          <input class="field" type="text" placeholder="Что бы хотели найти?"><b class="title">Вот что мы нашли:</b>
+          <div class="smart_search_item"><img src="./img/models/item2.jpg" alt="image">
+            <div class="text"><b>Кухня «Лайк-вейт»</b><span>от 22 000 ₽ пог. м</span></div>
+          </div>
+          <div class="smart_search_item"><img src="./img/models/item4.jpg" alt="image">
+            <div class="text"><b>Кухня «Джейсон Юнион»</b><span>от 120 000 ₽ пог. м</span></div>
+          </div>
+          <div class="smart_search_item"><img src="./img/models/item3.jpg" alt="image">
+            <div class="text"><b>Кухня «Мегакедр»</b><span>от 500 000 ₽ пог. м</span></div>
+          </div>
+          <div class="smart_search_item"><img src="./img/models/item2.jpg" alt="image">
+            <div class="text"><b>Кухня «Лайк-вейт»</b><span>от 22 000 ₽ пог. м</span></div>
+          </div>
+          <div class="smart_search_item"><img src="./img/models/item4.jpg" alt="image">
+            <div class="text"><b>Кухня «Джейсон Юнион»</b><span>от 120 000 ₽ пог. м</span></div>
+          </div>
+          <div class="smart_search_item"><img src="./img/models/item3.jpg" alt="image">
+            <div class="text"><b>Кухня «Мегакедр»</b><span>от 500 000 ₽ пог. м </span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal_content" id="modal_favorite">
+      <div class="modal_content__bg">
+        <div class="modal_content__header"><b class="title">Избранное</b>
+          <button class="modal_close" type="button"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 1L9 9" stroke="black"/>
+<path d="M9 1L1 9" stroke="black"/>
+</svg>
+          </button>
+        </div>
+        <div class="modal_content__favorites">
+          <div class="item">
+            <div class="item__left"><img src="./img/models/item2.jpg" alt="image"></div>
+            <div class="item__right">
+              <div class="top"><b>Кухня «Джейсон Юнион»</b><span>от 120 000 ₽ пог. м</span></div>
+              <div class="bottom"><a href="#">Перейти к заказу</a>
+                <button class="favorite_trash" type="button"><svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 2.33329H0.666667V6.66663C0.666667 6.84344 0.736905 7.01301 0.861929 7.13803C0.986953 7.26305 1.15652 7.33329 1.33333 7.33329H4.66667C4.84348 7.33329 5.01305 7.26305 5.13807 7.13803C5.2631 7.01301 5.33333 6.84344 5.33333 6.66663V2.33329H1ZM2.33333 6.33329H1.66667V3.33329H2.33333V6.33329ZM4.33333 6.33329H3.66667V3.33329H4.33333V6.33329ZM4.53933 1.33329L4 0.666626H2L1.46067 1.33329H0V1.99996H6V1.33329H4.53933Z" fill="#595959"/>
+</svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item__left"><img src="./img/models/item3.jpg" alt="image"></div>
+            <div class="item__right">
+              <div class="top"><b>Кухня «Джейсон Юнион»</b><span>от 120 000 ₽ пог. м</span></div>
+              <div class="bottom"><a href="#">Перейти к заказу</a>
+                <button class="favorite_trash" type="button"><svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 2.33329H0.666667V6.66663C0.666667 6.84344 0.736905 7.01301 0.861929 7.13803C0.986953 7.26305 1.15652 7.33329 1.33333 7.33329H4.66667C4.84348 7.33329 5.01305 7.26305 5.13807 7.13803C5.2631 7.01301 5.33333 6.84344 5.33333 6.66663V2.33329H1ZM2.33333 6.33329H1.66667V3.33329H2.33333V6.33329ZM4.33333 6.33329H3.66667V3.33329H4.33333V6.33329ZM4.53933 1.33329L4 0.666626H2L1.46067 1.33329H0V1.99996H6V1.33329H4.53933Z" fill="#595959"/>
+</svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item__left"><img src="./img/models/item4.jpg" alt="image"></div>
+            <div class="item__right">
+              <div class="top"><b>Кухня «Джейсон Юнион»</b><span>от 120 000 ₽ пог. м</span></div>
+              <div class="bottom"><a href="#">Перейти к заказу</a>
+                <button class="favorite_trash" type="button"><svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 2.33329H0.666667V6.66663C0.666667 6.84344 0.736905 7.01301 0.861929 7.13803C0.986953 7.26305 1.15652 7.33329 1.33333 7.33329H4.66667C4.84348 7.33329 5.01305 7.26305 5.13807 7.13803C5.2631 7.01301 5.33333 6.84344 5.33333 6.66663V2.33329H1ZM2.33333 6.33329H1.66667V3.33329H2.33333V6.33329ZM4.33333 6.33329H3.66667V3.33329H4.33333V6.33329ZM4.53933 1.33329L4 0.666626H2L1.46067 1.33329H0V1.99996H6V1.33329H4.53933Z" fill="#595959"/>
+</svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item__left"><img src="./img/models/item2.jpg" alt="image"></div>
+            <div class="item__right">
+              <div class="top"><b>Кухня «Джейсон Юнион»</b><span>от 120 000 ₽ пог. м</span></div>
+              <div class="bottom"><a href="#">Перейти к заказу</a>
+                <button class="favorite_trash" type="button"><svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 2.33329H0.666667V6.66663C0.666667 6.84344 0.736905 7.01301 0.861929 7.13803C0.986953 7.26305 1.15652 7.33329 1.33333 7.33329H4.66667C4.84348 7.33329 5.01305 7.26305 5.13807 7.13803C5.2631 7.01301 5.33333 6.84344 5.33333 6.66663V2.33329H1ZM2.33333 6.33329H1.66667V3.33329H2.33333V6.33329ZM4.33333 6.33329H3.66667V3.33329H4.33333V6.33329ZM4.53933 1.33329L4 0.666626H2L1.46067 1.33329H0V1.99996H6V1.33329H4.53933Z" fill="#595959"/>
+</svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item__left"><img src="./img/models/item3.jpg" alt="image"></div>
+            <div class="item__right">
+              <div class="top"><b>Кухня «Джейсон Юнион»</b><span>от 120 000 ₽ пог. м</span></div>
+              <div class="bottom"><a href="#">Перейти к заказу</a>
+                <button class="favorite_trash" type="button"><svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 2.33329H0.666667V6.66663C0.666667 6.84344 0.736905 7.01301 0.861929 7.13803C0.986953 7.26305 1.15652 7.33329 1.33333 7.33329H4.66667C4.84348 7.33329 5.01305 7.26305 5.13807 7.13803C5.2631 7.01301 5.33333 6.84344 5.33333 6.66663V2.33329H1ZM2.33333 6.33329H1.66667V3.33329H2.33333V6.33329ZM4.33333 6.33329H3.66667V3.33329H4.33333V6.33329ZM4.53933 1.33329L4 0.666626H2L1.46067 1.33329H0V1.99996H6V1.33329H4.53933Z" fill="#595959"/>
+</svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item__left"><img src="./img/models/item4.jpg" alt="image"></div>
+            <div class="item__right">
+              <div class="top"><b>Кухня «Джейсон Юнион»</b><span>от 120 000 ₽ пог. м</span></div>
+              <div class="bottom"><a href="#">Перейти к заказу</a>
+                <button class="favorite_trash" type="button"><svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 2.33329H0.666667V6.66663C0.666667 6.84344 0.736905 7.01301 0.861929 7.13803C0.986953 7.26305 1.15652 7.33329 1.33333 7.33329H4.66667C4.84348 7.33329 5.01305 7.26305 5.13807 7.13803C5.2631 7.01301 5.33333 6.84344 5.33333 6.66663V2.33329H1ZM2.33333 6.33329H1.66667V3.33329H2.33333V6.33329ZM4.33333 6.33329H3.66667V3.33329H4.33333V6.33329ZM4.53933 1.33329L4 0.666626H2L1.46067 1.33329H0V1.99996H6V1.33329H4.53933Z" fill="#595959"/>
+</svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal_content modal_catalog" id="modal_catalog">
+      <div class="modal_content__sect-header"><b>Каталог</b>
+        <button class="modal_close" type="button"><svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 1L12 12" stroke="black"/>
+<path d="M12 1L1 12" stroke="black"/>
+</svg>
+        </button>
+      </div>
+      <div class="modal_content__wrap">
+        <div class="aside">
+          <div class="aside__item">
+            <button class="aside__item-header" type="button">
+              <div class="text">
+                <div class="image"><img src="./img/icons/kitchens.svg" alt="image"></div><b>Кухни</b>
+              </div><i class="icon-arrow-bottom"></i>
+            </button>
+            <div class="aside__item-content">
+              <div class="item">
+                <div class="title"><b>Цвет кухни</b><i class="icon-arrow-bottom"></i></div>
+                <div class="content">
+                  <label class="field-checked type-square">
+                    <input type="checkbox" name="check1"><span class="check"></span><span class="text">Белый</span>
+                  </label>
+                  <label class="field-checked type-square">
+                    <input type="checkbox" name="check2"><span class="check"></span><span class="text">Чёрный</span>
+                  </label>
+                  <label class="field-checked type-square">
+                    <input type="checkbox" name="check3"><span class="check"></span><span class="text">Красный</span>
+                  </label>
+                  <label class="field-checked type-square">
+                    <input type="checkbox" name="check4"><span class="check"></span><span class="text">Синий</span>
+                  </label>
+                  <label class="field-checked type-square">
+                    <input type="checkbox" name="check5"><span class="check"></span><span class="text">Зеленый</span>
+                  </label>
+                  <label class="field-checked type-square">
+                    <input type="checkbox" name="check6"><span class="check"></span><span class="text">Фиолетовый</span>
+                  </label>
+                  <label class="field-checked type-square">
+                    <input type="checkbox" name="check7"><span class="check"></span><span class="text">Оранжевый</span>
+                  </label>
+                  <label class="field-checked type-square">
+                    <input type="checkbox" name="check8"><span class="check"></span><span class="text">Серый</span>
+                  </label>
+                  <label class="field-checked type-square">
+                    <input type="checkbox" name="check9"><span class="check"></span><span class="text">Глянцевый</span>
+                  </label>
+                  <label class="field-checked type-square">
+                    <input type="checkbox" name="check10"><span class="check"></span><span class="text">Металлик</span>
+                  </label>
+                  <label class="field-checked type-square">
+                    <input type="checkbox" name="check11"><span class="check"></span><span class="text">Венге</span>
+                  </label>
+                  <label class="field-checked type-square">
+                    <input type="checkbox" name="check12"><span class="check"></span><span class="text">Орех</span>
+                  </label>
+                  <label class="field-checked type-square">
+                    <input type="checkbox" name="check13"><span class="check"></span><span class="text">Двуцветные</span>
+                  </label>
+                </div>
+              </div>
+              <div class="item">
+                <div class="title"><b>Форма кухни</b><i class="icon-arrow-bottom"></i></div>
+                <div class="content">
+                  <label class="field-checked type-circle">
+                    <input type="checkbox" name="check14"><span class="check"></span><span class="text">Угловые</span>
+                  </label>
+                  <label class="field-checked type-circle">
+                    <input type="checkbox" name="check15"><span class="check"></span><span class="text">Прямые</span>
+                  </label>
+                  <label class="field-checked type-circle">
+                    <input type="checkbox" name="check16"><span class="check"></span><span class="text">Модульные</span>
+                  </label>
+                  <label class="field-checked type-circle">
+                    <input type="checkbox" name="check17"><span class="check"></span><span class="text">Встроенные</span>
+                  </label>
+                  <label class="field-checked type-circle">
+                    <input type="checkbox" name="check18"><span class="check"></span><span class="text">Г-образные</span>
+                  </label>
+                  <label class="field-checked type-circle">
+                    <input type="checkbox" name="check19"><span class="check"></span><span class="text">П-образные</span>
+                  </label>
+                  <label class="field-checked type-circle">
+                    <input type="checkbox" name="check20"><span class="check"></span><span class="text">Островные</span>
+                  </label>
+                  <label class="field-checked type-circle">
+                    <input type="checkbox" name="check21"><span class="check"></span><span class="text">С барной стойкой</span>
+                  </label>
+                </div>
+              </div>
+              <div class="item">
+                <div class="title"><b>Стоимость кухни</b><i class="icon-arrow-bottom"></i></div>
+                <div class="content"></div>
+              </div>
+              <div class="item">
+                <div class="title"><b>Форма кухни</b><i class="icon-arrow-bottom"></i></div>
+                <div class="content"></div>
+              </div>
+              <div class="item">
+                <div class="title"><b>Материал</b><i class="icon-arrow-bottom"></i></div>
+                <div class="content"></div>
+              </div>
+              <div class="item">
+                <div class="title"><b>Стиль</b><i class="icon-arrow-bottom"></i></div>
+                <div class="content"></div>
+              </div>
+              <div class="item">
+                <div class="title"><b>Размеры</b><i class="icon-arrow-bottom"></i></div>
+                <div class="content"></div>
+              </div>
+            </div>
+          </div>
+          <div class="aside__item">
+            <button class="aside__item-header" type="button">
+              <div class="text">
+                <div class="image"><img src="./img/icons/wardrobe.svg" alt="image"></div><b>Шкафы</b>
+              </div><i class="icon-arrow-bottom"></i>
+            </button>
+            <div class="aside__item-content">
+              <label class="field-checked type-circle">
+                <input type="checkbox" name="check17"><span class="check"></span><span class="text">Шкафы-купе</span>
+              </label>
+              <label class="field-checked type-circle">
+                <input type="checkbox" name="check18"><span class="check"></span><span class="text">Шкафы распашные</span>
+              </label>
+              <label class="field-checked type-circle">
+                <input type="checkbox" name="check19"><span class="check"></span><span class="text">Шкафы угловые</span>
+              </label>
+              <label class="field-checked type-circle">
+                <input type="checkbox" name="check20"><span class="check"></span><span class="text">Шкафы-встроенные</span>
+              </label>
+              <label class="field-checked type-circle">
+                <input type="checkbox" name="check21"><span class="check"></span><span class="text">Гардеробные</span>
+              </label>
+            </div>
+          </div>
+          <div class="aside__item">
+            <button class="aside__item-header" type="button">
+              <div class="text">
+                <div class="image"><img src="./img/icons/furniture.svg" alt="image"></div><b>Мебель для прихожей</b>
+              </div><i class="icon-arrow-bottom"></i>
+            </button>
+            <div class="aside__item-content"></div>
+          </div>
+          <div class="aside__item">
+            <button class="aside__item-header" type="button">
+              <div class="text">
+                <div class="image"><img src="./img/icons/walls.svg" alt="image"></div><b>Стенки для гостиной</b>
+              </div><i class="icon-arrow-bottom"></i>
+            </button>
+            <div class="aside__item-content"></div>
+          </div>
+          <div class="aside__item">
+            <button class="aside__item-header" type="button">
+              <div class="text">
+                <div class="image"><img src="./img/icons/double-bed.svg" alt="image"></div><b>Мебель для спальни</b>
+              </div><i class="icon-arrow-bottom"></i>
+            </button>
+            <div class="aside__item-content"></div>
+          </div>
+          <div class="aside__item">
+            <button class="aside__item-header" type="button">
+              <div class="text">
+                <div class="image"><img src="./img/icons/furniture-double.svg" alt="image"></div><b>Мебель для детской</b>
+              </div><i class="icon-arrow-bottom"></i>
+            </button>
+            <div class="aside__item-content"></div>
+          </div>
+          <div class="aside__item">
+            <button class="aside__item-header" type="button">
+              <div class="text">
+                <div class="image"><img src="./img/icons/bedside-table.svg" alt="image"></div><b>Комоды и тумбы</b>
+              </div><i class="icon-arrow-bottom"></i>
+            </button>
+            <div class="aside__item-content"></div>
+          </div>
+          <div class="aside__item">
+            <button class="aside__item-header" type="button">
+              <div class="text">
+                <div class="image"><img src="./img/icons/commercial-furniture.svg" alt="image"></div><b>Торговая мебель</b>
+              </div><i class="icon-arrow-bottom"></i>
+            </button>
+            <div class="aside__item-content"></div>
+          </div>
+          <div class="aside__item">
+            <button class="aside__item-header" type="button">
+              <div class="text">
+                <div class="image"><img src="./img/icons/office-furniture.svg" alt="image"></div><b>Мебель для Офиса</b>
+              </div><i class="icon-arrow-bottom"></i>
+            </button>
+            <div class="aside__item-content"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal_content modal_static modal_change_city" id="modal_change_locale">
+      <div class="modal_content__wrap">
+        <div class="modal_content__header"><b class="title">Ваш город</b>
+          <button class="modal_close" type="button"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 1L14 14" stroke="black"/>
+<path d="M14 1L1 14" stroke="black"/>
+</svg>
+          </button>
+        </div>
+        <div class="modal_content__box" data-simplebar>
+          <div class="smart_menu__header-locale"><i class="icon-locale"></i><span class="text">Тверь</span></div><b class="title">Выбрать другой город</b>
+          <input class="field" type="text" placeholder="Поиск города">
+          <div class="list_checked">
+            <label class="list_checked__item">
+              <input type="radio" name="radio1" checked>
+              <div class="check"><i class="icon-check"></i></div><b>Тверь</b>
+            </label>
+            <label class="list_checked__item">
+              <input type="radio" name="radio1">
+              <div class="check"><i class="icon-check"></i></div><b>Москва</b>
+            </label>
+            <label class="list_checked__item">
+              <input type="radio" name="radio1">
+              <div class="check"><i class="icon-check"></i></div><b>Краснодар</b>
+            </label>
+            <label class="list_checked__item">
+              <input type="radio" name="radio1">
+              <div class="check"><i class="icon-check"></i></div><b>Сочи</b>
+            </label>
+            <label class="list_checked__item">
+              <input type="radio" name="radio1">
+              <div class="check"><i class="icon-check"></i></div><b>Санкт-Петербург</b>
+            </label>
+            <label class="list_checked__item">
+              <input type="radio" name="radio1">
+              <div class="check"><i class="icon-check"></i></div><b>Тверь</b>
+            </label>
+            <label class="list_checked__item">
+              <input type="radio" name="radio1">
+              <div class="check"><i class="icon-check"></i></div><b>Москва</b>
+            </label>
+            <label class="list_checked__item">
+              <input type="radio" name="radio1">
+              <div class="check"><i class="icon-check"></i></div><b>Краснодар</b>
+            </label>
+            <label class="list_checked__item">
+              <input type="radio" name="radio1">
+              <div class="check"><i class="icon-check"></i></div><b>Сочи</b>
+            </label>
+            <label class="list_checked__item">
+              <input type="radio" name="radio1">
+              <div class="check"><i class="icon-check"></i></div><b>Санкт-Петербург</b>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="./libs/lazysizes/lazysizes.min.js" defer></script>
     <script src="./libs/swiper/swiper-bundle.min.js" defer></script>
+    <script src="./libs/simplebar/simplebar.min.js" defer></script>
     <script src="./libs/imask/imask.js" defer></script>
     <script src="./js/common.js" defer></script>
   </body>
