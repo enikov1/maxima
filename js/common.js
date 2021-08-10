@@ -137,7 +137,7 @@ if(filter_drop_menu_el) {
 		e.addEventListener('click', (event) => {
 			event.preventDefault();
 
-			if(event.target.tagName == 'A') {
+			if(event.target.className == 'link') {
 				e.classList.toggle('active');
 			}
 
